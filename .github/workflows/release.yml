@@ -1,0 +1,39 @@
+# SPDX-License-Identifier: Apache-2.0 OR MIT
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build and publish release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install build
+        run: pip install build
+      - name: Build distributions
+        run: python -m build
+      - name: Verify version matches tag
+        run: |
+          PKG_VER="v$(python -c 'import axonos; print(axonos.__version__)')"
+          TAG="${GITHUB_REF_NAME}"
+          echo "package=$PKG_VER tag=$TAG"
+          test "$PKG_VER" = "$TAG"
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
+          generate_release_notes: true
+
+      # --- PyPI publish (opt-in) -------------------------------------------
+      # Configure a PyPI Trusted Publisher for this repo, add the
+      # `id-token: write` permission above, then uncomment:
+      # - uses: pypa/gh-action-pypi-publish@release/v1

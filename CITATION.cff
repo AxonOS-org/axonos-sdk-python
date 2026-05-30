@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "axonos-sdk-python: Python SDK for the AxonOS cognitive operating system"
+abstract: >-
+  Pure-Python implementation of the AxonOS RFC-0006 intent-observation wire
+  format and capability model, byte-compatible with the reference Rust SDK.
+authors:
+  - family-names: Yermakou
+    given-names: Denis
+    email: connect@axonos.org
+version: 0.1.0
+date-released: 2026-05-30
+license: "Apache-2.0 OR MIT"
+repository-code: "https://github.com/AxonOS-org/axonos-sdk-python"
+url: "https://axonos.org"
+keywords:
+  - brain-computer-interface
+  - real-time
+  - capability-security
+  - rfc-0006
