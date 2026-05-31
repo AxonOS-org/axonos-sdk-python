@@ -26,7 +26,7 @@ jobs:
       - name: Install ruff (pinned)
         run: pip install ruff==0.15.15
       - name: ruff check
-        run: ruff check axonos tests
+        run: ruff check axonos tests examples
 
   test:
     name: Test (py${{ matrix.python-version }})

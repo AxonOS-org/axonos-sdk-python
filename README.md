@@ -56,6 +56,19 @@ if obs.capability() is not None and manifest.contains(obs.capability()):
     print(obs.kind, obs.confidence)   # e.g. Direction.Up 0.93
 ```
 
+## Run the demo
+
+See it work end-to-end in one command — no install, no dependencies:
+
+```bash
+python examples/demo.py
+```
+
+It runs a synthetic session (no brain, no sensor) that builds real
+`IntentObservation` records, proves the 32-byte wire round-trip on every event,
+and runs the capability gate — including rejecting raw-signal access by
+construction. See [`examples/`](examples/).
+
 ## Cross-language fidelity
 
 `tests/test_wire.py` prints deterministic byte vectors (`direction_up_full_conf`,
